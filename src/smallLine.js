@@ -11,7 +11,7 @@ class Line {
         return inString;
     }
     isEqualTo(other) {
-        return this.startX == other.startX && this.startY == other.startY && this.endX == other.endX && this.endY == other.endY;
+        return JSON.stringify(Object.getOwnPropertyNames(this)) == JSON.stringify(Object.getOwnPropertyNames(other));
     }
 }
 

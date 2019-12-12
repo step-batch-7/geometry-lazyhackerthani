@@ -21,6 +21,7 @@ describe("isEqualTo in Line class", function () {
     it("should give false if given object is not a instance of line", function () {
         let myLine = new Line(2, 3, 3, 4);
         let myNewLine = new Line(2, 3, 4, 4);
+        myNewLine.extra = 4;
         let actual = myLine.isEqualTo(myNewLine);
         let expected = false;
         assert.isFalse(actual, expected);
