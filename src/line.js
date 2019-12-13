@@ -3,21 +3,21 @@ const isEqualPoint = function(point1, point2) {
 };
 
 class Line {
-  constructor(p1x, p1y, p2x, p2y) {
-    [this.pointA, this.pointB] = [
-      { x: p1x, y: p1y },
-      { x: p2x, y: p2y }
+  constructor(endA, endB) {
+    [this.endA, this.endB] = [
+      { x: endA.x, y: endA.y },
+      { x: endB.x, y: endB.y }
     ];
   }
   toString() {
-    let inString = `points(${this.pointA.x},${this.pointA.y}),(${this.pointB.x},${this.pointB.y})`;
+    let inString = `points(${this.endA.x},${this.endA.y}),(${this.endB.x},${this.endB.y})`;
     return inString;
   }
   isEqualTo(other) {
     return (
       other instanceof Line &&
-      isEqualPoint(other.pointA, this.pointA) &&
-      isEqualPoint(other.pointB, this.pointB)
+      isEqualPoint(other.endA, this.endA) &&
+      isEqualPoint(other.endB, this.endB)
     );
   }
 }
