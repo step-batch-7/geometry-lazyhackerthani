@@ -60,9 +60,19 @@ describe('slope property', function() {
 });
 
 describe('isParallelTo', function() {
-  it('should say true if given line is parallel', function() {
+  it('should say true if given line are parallel', function() {
     const line1 = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
     const line2 = new Line({ x: 4, y: 6 }, { x: 6, y: 8 });
     assert.isTrue(line1.isParallelTo(line2));
+  });
+  it('should say false if given line are not parallel', function() {
+    const line1 = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
+    const line2 = new Line({ x: 4, y: 6 }, { x: 6, y: 5 });
+    assert.isFalse(line1.isParallelTo(line2));
+  });
+  it('should say false if given object is not a line', function() {
+    const line1 = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
+    const line2 = { endA: { x: 4, y: 6 }, endB: { x: 6, y: 5 }, slope: 1 };
+    assert.isFalse(line1.isParallelTo(line2));
   });
 });

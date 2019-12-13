@@ -1,6 +1,6 @@
 const { pow, sqrt } = Math;
 const arePointsEqual = function(point1, point2) {
-  return point1.x == point2.x && point1.y == point2.y;
+  return point1.x === point2.x && point1.y === point2.y;
 };
 
 class Line {
@@ -29,6 +29,9 @@ class Line {
     );
   }
   isParallelTo(other) {
+    if (!(other instanceof Line)) {
+      return false;
+    }
     return this.slope === other.slope;
   }
 }
