@@ -1,3 +1,4 @@
+const { pow, sqrt } = Math;
 const arePointsEqual = function(point1, point2) {
   return point1.x == point2.x && point1.y == point2.y;
 };
@@ -8,6 +9,7 @@ class Line {
       { x: endA.x, y: endA.y },
       { x: endB.x, y: endB.y }
     ];
+    this.slope = (this.endA.x - this.endB.x) / (this.endA.y - this.endB.y);
   }
   toString() {
     return `line (${this.endA.x},${this.endA.y}), (${this.endB.x},${this.endB.y})`;
@@ -22,9 +24,8 @@ class Line {
     );
   }
   get length() {
-    return Math.sqrt(
-      Math.pow(this.endA.x - this.endB.x, 2) +
-        Math.pow(this.endA.y - this.endB.y, 2)
+    return sqrt(
+      pow(this.endA.x - this.endB.x, 2) + pow(this.endA.y - this.endB.y, 2)
     );
   }
 }
