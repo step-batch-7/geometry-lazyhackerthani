@@ -28,6 +28,9 @@ class Line {
       pow(this.endA.x - this.endB.x, 2) + pow(this.endA.y - this.endB.y, 2)
     );
   }
+  isParallelTo(other) {
+    return this.slope === other.slope;
+  }
 }
 
 module.exports = Line;

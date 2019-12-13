@@ -58,3 +58,11 @@ describe('slope property', function() {
     assert.strictEqual(myLine.slope, 1);
   });
 });
+
+describe('isParallelTo', function() {
+  it('should say true if given line is parallel', function() {
+    const line1 = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
+    const line2 = new Line({ x: 4, y: 6 }, { x: 6, y: 8 });
+    assert.isTrue(line1.isParallelTo(line2));
+  });
+});
