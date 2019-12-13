@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "nyc mocha"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,6 @@
   "homepage": "https://github.com/step-batch-7/geometry-lazyhackerthani#readme",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^6.2.2",
-    "nyc": "^14.1.1"
+    "mocha": "^6.2.2"
   }
 }

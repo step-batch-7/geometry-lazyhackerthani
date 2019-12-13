@@ -1,4 +1,4 @@
-const isEqualPoint = function(point1, point2) {
+const arePointsEqual = function(point1, point2) {
   return point1.x == point2.x && point1.y == point2.y;
 };
 
@@ -10,14 +10,15 @@ class Line {
     ];
   }
   toString() {
-    let inString = `points(${this.endA.x},${this.endA.y}),(${this.endB.x},${this.endB.y})`;
-    return inString;
+    return `line (${this.endA.x},${this.endA.y}), (${this.endB.x},${this.endB.y})`;
   }
   isEqualTo(other) {
+    if (!(other instanceof Line)) {
+      return false;
+    }
     return (
-      other instanceof Line &&
-      isEqualPoint(other.endA, this.endA) &&
-      isEqualPoint(other.endB, this.endB)
+      arePointsEqual(other.endA, this.endA) &&
+      arePointsEqual(other.endB, this.endB)
     );
   }
 }
