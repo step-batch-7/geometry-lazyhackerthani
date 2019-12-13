@@ -11,7 +11,7 @@ class Line {
         return inString;
     }
     isEqualTo(other) {
-        if (!other instanceof Line) {
+        if (!(other instanceof Line)) {
             return false;
         }
         return isEqualPoint(other.pointA, this.pointA) && isEqualPoint(other.pointB, this.pointB)
