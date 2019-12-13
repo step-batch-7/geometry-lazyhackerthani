@@ -1,5 +1,11 @@
 const assert = require('chai').assert;
-const Line = require('../src/smallLine.js');
+const { Line, isEqualPoint } = require('../src/line.js');
+
+describe("isPointsEqual", function () {
+    it("should say true for two points,whoes x and y values are equal", function () {
+        assert.isTrue(isEqualPoint({ x: 1, y: 2 }, { x: 1, y: 2 }));
+    });
+});
 
 describe("toString in Line class", function () {
     it("should give features of a line", function () {

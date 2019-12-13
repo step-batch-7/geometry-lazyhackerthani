@@ -18,4 +18,4 @@ class Line {
     }
 }
 
-module.exports = Line;
+module.exports = { Line, isEqualPoint };
