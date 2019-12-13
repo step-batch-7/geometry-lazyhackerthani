@@ -1,3 +1,4 @@
+`use strict`;
 const assert = require('chai').assert;
 const Line = require('../src/line.js');
 
@@ -42,20 +43,27 @@ describe('Line', function() {
       assert.strictEqual(myLine.length, 0);
     });
   });
-  it('should give length of the line when both the points are not same and have fractional value', function() {
+  it('should give length of the line when both the points are not same and have floating value', function() {
     let myLine = new Line({ x: 2, y: 3 }, { x: 3.5, y: 3 });
     assert.strictEqual(myLine.length, 1.5);
 
     myLine = new Line({ x: 2, y: 3 }, { x: 3.5, y: 4.5 });
-    let actual = myLine.length;
-    assert.strictEqual(myLine.length, 2.1213203435596424);
+    assert.approximately(myLine.length, 2.1213, 0.0001);
   });
 });
 
 describe('slope property', function() {
-  it('should set a property called slope', function() {
+  it('should have slope for a line neither parallel to x nor to y axis', function() {
     const myLine = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
     assert.strictEqual(myLine.slope, 1);
+  });
+  it('should have slope as -infinity if line is parallel to x axis ', function() {
+    const myLine = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
+    assert.strictEqual(myLine.slope, -Infinity);
+  });
+  it('should have slope as 0 if line is parallel to y axis ', function() {
+    const myLine = new Line({ x: 1, y: 2 }, { x: 1, y: 3 });
+    assert.strictEqual(myLine.slope, 0);
   });
 });
 
