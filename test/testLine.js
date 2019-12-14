@@ -126,4 +126,10 @@ describe('isParallelTo', function() {
       assert.isFalse(line.hasPoint(point));
     });
   });
+  describe('midPoint', function() {
+    it('should give midPoint of the', function() {
+      const line = new Line({ x: 2, y: 4 }, { x: 6, y: 12 });
+      assert.deepStrictEqual(line.midPoint, { x: 4, y: 8 });
+    });
+  });
 });

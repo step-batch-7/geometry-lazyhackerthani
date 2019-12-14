@@ -55,6 +55,12 @@ class Line {
       isBetween(this.endA.y, this.endB.y, other.y)
     );
   }
+  get midPoint() {
+    return {
+      x: (this.endA.x + this.endB.x) / 2,
+      y: (this.endA.y + this.endB.y) / 2
+    };
+  }
 }
 
 module.exports = Line;
