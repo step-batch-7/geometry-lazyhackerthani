@@ -96,4 +96,11 @@ describe('isParallelTo', function() {
       assert.strictEqual(line.findY(2), 2);
     });
   });
+  describe('hasPoint', function() {
+    it('should say true if point is on the line', function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = { x: 1, y: 1 };
+      assert.isTrue(line.hasPoint(point));
+    });
+  });
 });

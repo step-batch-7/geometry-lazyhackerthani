@@ -3,6 +3,10 @@ const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
 
+const isBetween = function(min, max, no) {
+  return min <= no && no <= max;
+};
+
 class Line {
   constructor(endA, endB) {
     [this.endA, this.endB] = [
@@ -41,6 +45,12 @@ class Line {
   }
   findY(givenX) {
     return this.slope * givenX + this.yIntercept;
+  }
+  hasPoint(other) {
+    return (
+      isBetween(this.endA.x, this.endB.x, other.x) &&
+      isBetween(this.endA.y, this.endB.y, other.y)
+    );
   }
 }
 
