@@ -94,6 +94,10 @@ describe('isParallelTo', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       assert.strictEqual(line.findX(2), 2);
     });
+    it('should give NaN when y is outside the Line Segment', function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      assert.isNaN(line.findX(4));
+    });
   });
   describe('findY', function() {
     it('should give y for given x on the line', function() {
