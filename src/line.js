@@ -3,6 +3,10 @@ const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
 
+const yInterceptOf = function(x, y, m) {
+  return y - m * x;
+};
+
 class Line {
   constructor(endA, endB) {
     [this.endA, this.endB] = [
@@ -32,6 +36,11 @@ class Line {
   get slope() {
     if (this.endA.y === this.endB.y) return undefined;
     return (this.endA.x - this.endB.x) / (this.endA.y - this.endB.y);
+  }
+  findX(givenY) {
+    return (
+      (givenY - yInterceptOf(this.endA.x, this.endA.y, this.slope)) / this.slope
+    );
   }
 }
 

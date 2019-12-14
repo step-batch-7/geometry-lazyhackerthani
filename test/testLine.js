@@ -83,4 +83,11 @@ describe('isParallelTo', function() {
     const line2 = { endA: { x: 4, y: 6 }, endB: { x: 6, y: 5 }, slope: 1 };
     assert.isFalse(line1.isParallelTo(line2));
   });
+
+  describe('findX', function() {
+    it('should give x for given y on the line', function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      assert.strictEqual(line.findX(2), 2);
+    });
+  });
 });
