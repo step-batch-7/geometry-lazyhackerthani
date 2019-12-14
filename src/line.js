@@ -30,7 +30,8 @@ class Line {
     );
   }
   isParallelTo(other) {
-    if (!(other instanceof Line)) return false;
+    if (!(other instanceof Line) || other.yIntercept === this.yIntercept)
+      return false;
     return this.slope === other.slope;
   }
   get slope() {

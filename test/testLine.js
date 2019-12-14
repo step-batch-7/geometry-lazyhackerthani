@@ -69,9 +69,14 @@ describe('slope', function() {
 
 describe('isParallelTo', function() {
   it('should say true if given line are parallel', function() {
+    const line1 = new Line({ x: 3, y: 3 }, { x: 6, y: 6 });
+    const line2 = new Line({ x: 4, y: 3 }, { x: 6, y: 5 });
+    assert.isTrue(line1.isParallelTo(line2));
+  });
+  it('should say false if given line are overlapping', function() {
     const line1 = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
     const line2 = new Line({ x: 4, y: 6 }, { x: 6, y: 8 });
-    assert.isTrue(line1.isParallelTo(line2));
+    assert.isFalse(line1.isParallelTo(line2));
   });
   it('should say false if given line are not parallel', function() {
     const line1 = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
