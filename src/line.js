@@ -9,15 +9,12 @@ class Line {
       { x: endA.x, y: endA.y },
       { x: endB.x, y: endB.y }
     ];
-    this.slope = (this.endA.x - this.endB.x) / (this.endA.y - this.endB.y);
   }
   toString() {
     return `line (${this.endA.x},${this.endA.y}), (${this.endB.x},${this.endB.y})`;
   }
   isEqualTo(other) {
-    if (!(other instanceof Line)) {
-      return false;
-    }
+    if (!(other instanceof Line)) return false;
     return (
       arePointsEqual(other.endA, this.endA) &&
       arePointsEqual(other.endB, this.endB)
@@ -29,10 +26,11 @@ class Line {
     );
   }
   isParallelTo(other) {
-    if (!(other instanceof Line)) {
-      return false;
-    }
+    if (!(other instanceof Line)) return false;
     return this.slope === other.slope;
+  }
+  get slope() {
+    return (this.endA.x - this.endB.x) / (this.endA.y - this.endB.y);
   }
 }
 

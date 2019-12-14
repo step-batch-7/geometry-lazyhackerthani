@@ -17,19 +17,19 @@ describe('Line', function() {
       const myLine = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
       const myNewLine = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
       const actual = myLine.isEqualTo(myNewLine);
-      assert.strictEqual(actual, true);
+      assert.isTrue(actual);
     });
     it('should give false if given object is a instance of line but have different values', function() {
       const myLine = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
       const myNewLine = new Line({ x: 2, y: 3 }, { x: 4, y: 4 });
       const actual = myLine.isEqualTo(myNewLine);
-      assert.strictEqual(actual, false);
+      assert.isFalse(actual);
     });
     it('should give false if given object is not a instance of line', function() {
       const myLine = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
       const myNewLine = { x: 2, y: 3 };
       const actual = myLine.isEqualTo(myNewLine);
-      assert.strictEqual(actual, false);
+      assert.isFalse(actual);
     });
   });
 
