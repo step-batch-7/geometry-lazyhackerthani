@@ -7,7 +7,7 @@ describe('Line', function() {
     it('should give features of a line', function() {
       const myLine = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
       const actual = myLine.toString();
-      const expected = `line (${2},${3}), (${3},${4})`;
+      const expected = `[Line (2,3) to (3,4)]`;
       assert.deepStrictEqual(actual, expected);
     });
   });
