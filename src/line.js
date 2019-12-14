@@ -39,6 +39,9 @@ class Line {
   findX(givenY) {
     return (givenY - this.yIntercept) / this.slope;
   }
+  findY(givenX) {
+    return this.slope * givenX + this.yIntercept;
+  }
 }
 
 module.exports = Line;
