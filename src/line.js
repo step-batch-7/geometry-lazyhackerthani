@@ -30,6 +30,7 @@ class Line {
     return this.slope === other.slope;
   }
   get slope() {
+    if (this.endA.y === this.endB.y) return undefined;
     return (this.endA.x - this.endB.x) / (this.endA.y - this.endB.y);
   }
 }

@@ -57,9 +57,9 @@ describe('slope', function() {
     const line = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
     assert.strictEqual(line.slope, 1);
   });
-  it('should have slope as -infinity if line is parallel to x axis ', function() {
+  it('should have slope as undefined if line is parallel to x axis ', function() {
     const line = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
-    assert.strictEqual(line.slope, -Infinity);
+    assert.strictEqual(line.slope, undefined);
   });
   it('should have slope as 0 if line is parallel to y axis ', function() {
     const line = new Line({ x: 1, y: 2 }, { x: 1, y: 3 });
