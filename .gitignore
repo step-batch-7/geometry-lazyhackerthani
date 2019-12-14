@@ -1,5 +1,3 @@
 node_modules/
 .nyc_output
 .gitignore
-src/point.js
-test/testPoint.js
