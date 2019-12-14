@@ -110,19 +110,20 @@ describe('isParallelTo', function() {
     });
   });
   describe('hasPoint', function() {
+    const Point = require('../src/point');
     it('should say true if point is on the line', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
-      const point = { x: 2, y: 2 };
+      const point = new Point(2, 2);
       assert.isTrue(line.hasPoint(point));
     });
     it('should say true if point is on the line and second point has smaller x and y', function() {
       const line = new Line({ x: 1, y: 3 }, { x: 3, y: 1 });
-      const point = { x: 2, y: 2 };
+      const point = new Point(2, 2);
       assert.isTrue(line.hasPoint(point));
     });
     it('should say false if point is not on the line', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
-      const point = { x: 4, y: 1 };
+      const point = new Point(4, 1);
       assert.isFalse(line.hasPoint(point));
     });
   });
