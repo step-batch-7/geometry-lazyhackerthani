@@ -5,6 +5,9 @@ class Point {
   toString() {
     return `[Point @(${this.x},${this.y})]`;
   }
+  visit(doOperation) {
+    return doOperation(this.x, this.y);
+  }
 }
 
 module.exports = Point;
