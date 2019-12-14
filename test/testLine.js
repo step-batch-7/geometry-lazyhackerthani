@@ -132,4 +132,14 @@ describe('isParallelTo', function() {
       assert.deepStrictEqual(line.midPoint, { x: 4, y: 8 });
     });
   });
+  describe('split', function() {
+    it('should give two lines split on middle point', function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const expected = [
+        new Line({ x: 1, y: 1 }, { x: 2, y: 2 }),
+        new Line({ x: 2, y: 2 }, { x: 3, y: 3 })
+      ];
+      assert.deepStrictEqual(line.split(), expected);
+    });
+  });
 });

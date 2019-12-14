@@ -61,6 +61,12 @@ class Line {
       y: (this.endA.y + this.endB.y) / 2
     };
   }
+  split() {
+    return [
+      new Line(this.endA, this.midPoint),
+      new Line(this.midPoint, this.endB)
+    ];
+  }
 }
 
 module.exports = Line;
