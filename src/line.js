@@ -1,10 +1,10 @@
-const { pow, sqrt } = Math;
+const { pow, sqrt, min, max } = Math;
 const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
 
-const isBetween = function(min, max, no) {
-  return min <= no && no <= max;
+const isBetween = function(range1, range2, no) {
+  return min(range1, range2) <= no && no <= max(range1, range2);
 };
 
 class Line {
