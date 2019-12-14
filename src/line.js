@@ -46,6 +46,7 @@ class Line {
     return (givenY - this.yIntercept) / this.slope;
   }
   findY(givenX) {
+    if (!isBetween(this.endA.x, this.endB.x, givenX)) return NaN;
     return this.slope * givenX + this.yIntercept;
   }
   hasPoint(other) {
