@@ -31,4 +31,11 @@ describe('Point', function() {
       assert.strictEqual(myPoint.visit('function'), undefined);
     });
   });
+  describe('isEqualTo', function() {
+    it('should say true if both points are equal', function() {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(1, 2);
+      assert.isTrue(point1.isEqualTo(point2));
+    });
+  });
 });
