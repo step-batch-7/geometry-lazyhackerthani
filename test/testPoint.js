@@ -26,5 +26,9 @@ describe('Point', function() {
         2
       );
     });
+    it('should give undefined if given is not a function', function() {
+      const myPoint = new Point(1, 2);
+      assert.strictEqual(myPoint.visit('function'), undefined);
+    });
   });
 });

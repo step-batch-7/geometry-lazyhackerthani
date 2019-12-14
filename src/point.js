@@ -6,6 +6,9 @@ class Point {
     return `[Point @(${this.x},${this.y})]`;
   }
   visit(doOperation) {
+    if (typeof doOperation !== 'function') {
+      return undefined;
+    }
     return doOperation(this.x, this.y);
   }
 }
