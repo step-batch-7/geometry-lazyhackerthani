@@ -50,4 +50,16 @@ describe('Point', function() {
       assert.deepStrictEqual(point1.clone(), point2);
     });
   });
+  describe('findDistanceTo', function() {
+    it('should give distance between two distinct points', function() {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(2, 2);
+      assert.strictEqual(point1.findDistanceTo(point2), 1);
+    });
+    it('should give distance between points as 0 when both the points are equal', function() {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(1, 2);
+      assert.strictEqual(point1.findDistanceTo(point2), 0);
+    });
+  });
 });

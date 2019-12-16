@@ -18,6 +18,9 @@ class Point {
   clone() {
     return new Point(this.x, this.y);
   }
+  findDistanceTo(other) {
+    return Math.hypot(this.x - other.x, this.y - other.y);
+  }
 }
 
 module.exports = Point;
