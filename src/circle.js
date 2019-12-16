@@ -1,3 +1,4 @@
+const { pow, PI } = Math;
 const Point = require('../src/point');
 
 class Circle {
@@ -10,6 +11,9 @@ class Circle {
   }
   isEqualTo(other) {
     return this.center.isEqualTo(other.center) && this.radius == other.radius;
+  }
+  get area() {
+    return PI * pow(this.radius, 2);
   }
 }
 
