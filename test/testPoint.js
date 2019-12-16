@@ -63,11 +63,21 @@ describe('Point', function() {
     });
   });
   describe('isOn', function() {
+    const Line = require('../src/line.js');
     it('should say true if the point is on the given line', function() {
-      const Line = require('../src/line.js');
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const point = new Point(2, 2);
       assert.isTrue(point.isOn(line));
+    });
+    it('should say false if the point is not on the given line', function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = new Point(3, 4);
+      assert.isFalse(point.isOn(line));
+    });
+    it('should say false if point is not on the line but in the no range', function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 4, y: 4 });
+      const point = new Point(2, 1);
+      assert.isFalse(point.isOn(line));
     });
   });
 });

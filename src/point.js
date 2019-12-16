@@ -26,10 +26,7 @@ class Point {
     return hypot(this.x - other.x, this.y - other.y);
   }
   isOn(other) {
-    return (
-      isBetween(other.endA.x, other.endB.x, this.x) &&
-      isBetween(other.endA.y, other.endB.y, this.y)
-    );
+    return other.hasPoint(this);
   }
 }
 

@@ -54,10 +54,7 @@ class Line {
   }
   hasPoint(other) {
     if (!(other instanceof Point)) return false;
-    return (
-      isBetween(this.endA.x, this.endB.x, other.x) &&
-      isBetween(this.endA.y, this.endB.y, other.y)
-    );
+    return other.y == this.slope * other.x + this.yIntercept;
   }
   get midPoint() {
     return {

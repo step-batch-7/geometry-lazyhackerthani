@@ -136,6 +136,11 @@ describe('isParallelTo', function() {
       const point = new Point(4, 1);
       assert.isFalse(line.hasPoint(point));
     });
+    it('should say false if point is not on the line but in the no range', function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 4, y: 4 });
+      const point = new Point(2, 1);
+      assert.isFalse(line.hasPoint(point));
+    });
     it('should say false if given is not a Point', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const point = { x: 1, y: 1 };
