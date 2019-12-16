@@ -21,9 +21,7 @@ class Line {
     );
   }
   get length() {
-    return sqrt(
-      pow(this.endA.x - this.endB.x, 2) + pow(this.endA.y - this.endB.y, 2)
-    );
+    return this.endA.findDistanceTo(this.endB);
   }
   isParallelTo(other) {
     if (!(other instanceof Line) || other.yIntercept === this.yIntercept)
