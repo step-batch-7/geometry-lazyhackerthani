@@ -1,4 +1,4 @@
-const { pow, sqrt, min, max } = Math;
+const { pow, sqrt, min, max, round } = Math;
 const Point = require('../src/point');
 const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
@@ -74,8 +74,15 @@ class Line {
   findPointFromStart(other) {
     let t = other / this.length;
     return new Point(
-      (1 - t) * this.endA.x + t * this.endB.x,
-      (1 - t) * this.endA.y + t * this.endB.y
+      round((1 - t) * this.endA.x + t * this.endB.x),
+      round((1 - t) * this.endA.y + t * this.endB.y)
+    );
+  }
+  findPointFromEnd(other) {
+    let t = other / this.length;
+    return new Point(
+      round((1 - t) * this.endB.x + t * this.endA.x),
+      round((1 - t) * this.endB.y + t * this.endA.y)
     );
   }
 }

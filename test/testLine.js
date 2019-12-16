@@ -103,6 +103,7 @@ describe('isParallelTo', function() {
       assert.strictEqual(line.findX(1), 3);
     });
   });
+
   describe('findY', function() {
     it('should give y for given x on the line', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
@@ -117,6 +118,7 @@ describe('isParallelTo', function() {
       assert.strictEqual(line.findY(3), 1);
     });
   });
+
   describe('hasPoint', function() {
     const Point = require('../src/point');
     it('should say true if point is on the line', function() {
@@ -140,12 +142,14 @@ describe('isParallelTo', function() {
       assert.isFalse(line.hasPoint(point));
     });
   });
+
   describe('midPoint', function() {
     it('should give midPoint of the', function() {
       const line = new Line({ x: 2, y: 4 }, { x: 6, y: 12 });
       assert.deepStrictEqual(line.midPoint, { x: 4, y: 8 });
     });
   });
+
   describe('split', function() {
     it('should give two lines split on middle point', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
@@ -156,10 +160,26 @@ describe('isParallelTo', function() {
       assert.deepStrictEqual(line.split(), expected);
     });
   });
+
   describe('findPointFromStart', function() {
-    it('should give point at given distance on the line', function() {
-      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
-      assert.deepStrictEqual(line.findPointFromStart(2), { x: 3, y: 1 });
+    it('should give point at given distance on the line from start', function() {
+      const line = new Line({ x: 0, y: 1 }, { x: 7, y: 1 });
+      assert.deepStrictEqual(line.findPointFromStart(2), { x: 2, y: 1 });
+    });
+    it('should give point at given distance on the line even when second point has smaller co-ordinates', function() {
+      const line = new Line({ x: 6, y: 1 }, { x: 0, y: 1 });
+      assert.deepStrictEqual(line.findPointFromStart(2), { x: 4, y: 1 });
+    });
+  });
+
+  describe('findPointFromEnd', function() {
+    it('should give point at given distance on the line from end', function() {
+      const line = new Line({ x: 0, y: 1 }, { x: 5, y: 1 });
+      assert.deepStrictEqual(line.findPointFromEnd(2), { x: 3, y: 1 });
+    });
+    it('should give point at given distance on the line even when second point has smaller co-ordinates', function() {
+      const line = new Line({ x: 6, y: 1 }, { x: 0, y: 1 });
+      assert.deepStrictEqual(line.findPointFromEnd(2), { x: 2, y: 1 });
     });
   });
 });
