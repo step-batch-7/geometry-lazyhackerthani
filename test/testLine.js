@@ -98,6 +98,10 @@ describe('isParallelTo', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       assert.isNaN(line.findX(4));
     });
+    it('should one value when line is parallel to x axis', function() {
+      const line = new Line({ x: 3, y: 1 }, { x: 4, y: 1 });
+      assert.strictEqual(line.findX(1), 3);
+    });
   });
   describe('findY', function() {
     it('should give y for given x on the line', function() {
@@ -107,6 +111,10 @@ describe('isParallelTo', function() {
     it('should give NaN when x is outside the Line Segment', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       assert.isNaN(line.findY(4));
+    });
+    it('should one value when line is parallel to y axis', function() {
+      const line = new Line({ x: 3, y: 1 }, { x: 3, y: 2 });
+      assert.strictEqual(line.findY(3), 1);
     });
   });
   describe('hasPoint', function() {
@@ -124,6 +132,11 @@ describe('isParallelTo', function() {
     it('should say false if point is not on the line', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const point = new Point(4, 1);
+      assert.isFalse(line.hasPoint(point));
+    });
+    it('should say false if given is not a Point', function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = { x: 1, y: 1 };
       assert.isFalse(line.hasPoint(point));
     });
   });
