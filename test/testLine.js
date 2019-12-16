@@ -156,4 +156,10 @@ describe('isParallelTo', function() {
       assert.deepStrictEqual(line.split(), expected);
     });
   });
+  describe('findPointFromStart', function() {
+    it('should give point at given distance on the line', function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+      assert.deepStrictEqual(line.findPointFromStart(2), { x: 3, y: 1 });
+    });
+  });
 });

@@ -71,6 +71,13 @@ class Line {
       new Line(this.midPoint, this.endB)
     ];
   }
+  findPointFromStart(other) {
+    let t = other / this.length;
+    return new Point(
+      (1 - t) * this.endA.x + t * this.endB.x,
+      (1 - t) * this.endA.y + t * this.endB.y
+    );
+  }
 }
 
 module.exports = Line;
