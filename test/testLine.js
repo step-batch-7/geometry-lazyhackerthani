@@ -1,6 +1,7 @@
 `use strict`;
 const assert = require('chai').assert;
 const Line = require('../src/line.js');
+const Point = require('../src/point');
 
 describe('Line', function() {
   describe('toString', function() {
@@ -14,20 +15,26 @@ describe('Line', function() {
 
   describe('isEqualTo', function() {
     it('should give true if given object is a instance of line and have same values', function() {
-      const line = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
-      const otherLine = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
+      const line = new Line(new Point(2, 3), new Point(3, 4));
+      const otherLine = new Line(new Point(2, 3), new Point(3, 4));
+      const actual = line.isEqualTo(otherLine);
+      assert.isTrue(actual);
+    });
+    it('should give true if given object is a instance of line and have same points in reverse order', function() {
+      const line = new Line(new Point(2, 3), new Point(3, 4));
+      const otherLine = new Line(new Point(3, 4), new Point(2, 3));
       const actual = line.isEqualTo(otherLine);
       assert.isTrue(actual);
     });
     it('should give false if given object is a instance of line but have different values', function() {
-      const line = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
-      const otherLine = new Line({ x: 2, y: 3 }, { x: 4, y: 4 });
+      const line = new Line(new Point(2, 3), new Point(3, 4));
+      const otherLine = new Line(new Point(2, 3), new Point(4, 4));
       const actual = line.isEqualTo(otherLine);
       assert.isFalse(actual);
     });
     it('should give false if given object is not a instance of line', function() {
-      const line = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
-      const otherLine = { x: 2, y: 3 };
+      const line = new Line(new Point(2, 3), new Point(3, 4));
+      const otherLine = new Point(2, 3);
       const actual = line.isEqualTo(otherLine);
       assert.isFalse(actual);
     });
@@ -120,7 +127,6 @@ describe('isParallelTo', function() {
   });
 
   describe('hasPoint', function() {
-    const Point = require('../src/point');
     it('should say true if point is on the line', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const point = new Point(2, 2);
@@ -145,6 +151,16 @@ describe('isParallelTo', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const point = { x: 1, y: 1 };
       assert.isFalse(line.hasPoint(point));
+    });
+    it('should say false if point is not on the line but satisfy line equation', function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = new Point(4, 4);
+      assert.isFalse(line.hasPoint(point));
+    });
+    it('should say true if point is not on the line and the line is parallel to y axis', function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 1, y: 3 });
+      const point = new Point(1, 2);
+      assert.isTrue(line.hasPoint(point));
     });
   });
 

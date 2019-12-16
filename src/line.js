@@ -1,8 +1,5 @@
 const { pow, sqrt, min, max, round } = Math;
 const Point = require('../src/point');
-const arePointsEqual = function(point1, point2) {
-  return point1.x === point2.x && point1.y === point2.y;
-};
 
 const isBetween = function(range1, range2, no) {
   return min(range1, range2) <= no && no <= max(range1, range2);
@@ -10,10 +7,8 @@ const isBetween = function(range1, range2, no) {
 
 class Line {
   constructor(endA, endB) {
-    [this.endA, this.endB] = [
-      { x: endA.x, y: endA.y },
-      { x: endB.x, y: endB.y }
-    ];
+    this.endA = new Point(endA.x, endA.y);
+    this.endB = new Point(endB.x, endB.y);
   }
   toString() {
     return `[Line (${this.endA.x},${this.endA.y}) to (${this.endB.x},${this.endB.y})]`;
@@ -21,8 +16,8 @@ class Line {
   isEqualTo(other) {
     if (!(other instanceof Line)) return false;
     return (
-      arePointsEqual(other.endA, this.endA) &&
-      arePointsEqual(other.endB, this.endB)
+      (this.endA.isEqualTo(other.endA) && this.endB.isEqualTo(other.endB)) ||
+      (this.endA.isEqualTo(other.endB) && this.endB.isEqualTo(other.endA))
     );
   }
   get length() {
@@ -53,8 +48,15 @@ class Line {
     return this.slope * givenX + this.yIntercept;
   }
   hasPoint(other) {
-    if (!(other instanceof Point)) return false;
-    return other.y == this.slope * other.x + this.yIntercept;
+    if (
+      !(other instanceof Point) ||
+      !(this.slope === (this.endA.x - other.x) / (this.endA.y - other.y))
+    )
+      return false;
+    return (
+      isBetween(this.endA.x, this.endB.x, other.x) &&
+      isBetween(this.endA.y, this.endB.y, other.y)
+    );
   }
   get midPoint() {
     return {
