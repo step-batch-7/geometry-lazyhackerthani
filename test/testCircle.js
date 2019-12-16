@@ -16,5 +16,17 @@ describe('Circle', function() {
       const circle2 = new Circle(new Point(1, 2), 5);
       assert.isTrue(circle1.isEqualTo(circle2));
     });
+    it('should say false for circle with different center or radius', function() {
+      let circle1 = new Circle(new Point(1, 2), 5);
+      let circle2 = new Circle(new Point(1, 3), 5);
+      assert.isFalse(circle1.isEqualTo(circle2));
+      circle1 = new Circle(new Point(1, 2), 5);
+      circle2 = new Circle(new Point(1, 2), 3);
+      assert.isFalse(circle1.isEqualTo(circle2));
+    });
+    it('should give false if given is not a instance of circle', function() {
+      const circle = new Circle(new Point(1, 2), 5);
+      assert.isFalse(circle.isEqualTo({ x: 1, y: 2 }, 5));
+    });
   });
 });
