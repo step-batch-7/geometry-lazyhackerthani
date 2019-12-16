@@ -1,3 +1,7 @@
+const { hypot, min, max } = Math;
+const isBetween = function(range1, range2, no) {
+  return min(range1, range2) <= no && no <= max(range1, range2);
+};
 class Point {
   constructor(x, y) {
     [this.x, this.y] = [x, y];
@@ -19,7 +23,13 @@ class Point {
     return new Point(this.x, this.y);
   }
   findDistanceTo(other) {
-    return Math.hypot(this.x - other.x, this.y - other.y);
+    return hypot(this.x - other.x, this.y - other.y);
+  }
+  isOn(other) {
+    return (
+      isBetween(other.endA.x, other.endB.x, this.x) &&
+      isBetween(other.endA.y, other.endB.y, this.y)
+    );
   }
 }
 

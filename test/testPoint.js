@@ -62,4 +62,12 @@ describe('Point', function() {
       assert.strictEqual(point1.findDistanceTo(point2), 0);
     });
   });
+  describe('isOn', function() {
+    it('should say true if the point is on the given line', function() {
+      const Line = require('../src/line.js');
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = new Point(2, 2);
+      assert.isTrue(point.isOn(line));
+    });
+  });
 });
