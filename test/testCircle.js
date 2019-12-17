@@ -48,4 +48,12 @@ describe('Circle', function() {
       assert.isTrue(circle.hasPoint(point));
     });
   });
+  describe('moveTo', function() {
+    it('should creates a new circle of same dimensions at 1,1', function() {
+      const circle = new Circle(new Point(0, 0), 2);
+      const circle1 = circle.moveTo({ x: 1, y: 1 });
+      const circle2 = new Circle({ x: 1, y: 1 }, 2);
+      assert.isTrue(circle2.isEqualTo(circle1));
+    });
+  });
 });

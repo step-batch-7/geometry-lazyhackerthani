@@ -19,11 +19,13 @@ class Circle {
     return 2 * PI * this.radius;
   }
   hasPoint(other) {
-    //(x−a)2 + (y−b)2 = r2
     return (
       pow(other.x - this.center.x, 2) + pow(other.y - this.center.y, 2) ==
       pow(this.radius, 2)
     );
+  }
+  moveTo(other) {
+    return new Circle(other, this.radius);
   }
 }
 
