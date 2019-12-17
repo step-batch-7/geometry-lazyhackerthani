@@ -23,6 +23,13 @@ class Rectangle {
   get perimeter() {
     return (getWidth(this.d1, this.d2) + getHeight(this.d1, this.d2)) * 2;
   }
+  isEqualTo(other) {
+    if (!(other instanceof Rectangle)) return false;
+    return (
+      (this.d1.isEqualTo(other.d1) && this.d2.isEqualTo(other.d2)) ||
+      (this.d1.isEqualTo(other.d2) && this.d2.isEqualTo(other.d1))
+    );
+  }
 }
 
 module.exports = Rectangle;

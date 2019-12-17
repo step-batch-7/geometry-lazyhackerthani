@@ -53,4 +53,11 @@ describe('Rectangle', function() {
       assert.strictEqual(rectangle.perimeter, 4);
     });
   });
+  describe('isEqualTo', function() {
+    it('should say true rectangle are equal', function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 2 }, { x: 1, y: 4 });
+      const rectangle2 = new Rectangle({ x: 1, y: 2 }, { x: 1, y: 4 });
+      assert.isTrue(rectangle1.isEqualTo(rectangle2));
+    });
+  });
 });
