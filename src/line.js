@@ -41,17 +41,17 @@ class Line {
     return this.slope === other.slope;
   }
   get slope() {
-    return (this.endA.x - this.endB.x) / (this.endA.y - this.endB.y);
+    return (this.endA.y - this.endB.y) / (this.endA.x - this.endB.x);
   }
   findX(givenY) {
     if (!isBetween(this.endA.y, this.endB.y, givenY)) return NaN;
-    if (this.slope == undefined) return this.endA.x;
+    if (this.slope == 0) return this.endA.x;
     return (givenY - this.endA.y) / this.slope + this.endA.x;
   }
   findY(givenX) {
     if (!isBetween(this.endA.x, this.endB.x, givenX)) return NaN;
-    if (this.slope == 0) return this.endA.y;
-    return this.slope * (givenX - this.endA.x) + this.endA.x;
+    if (this.endA.x === this.endB.x) return this.endA.y;
+    return this.slope * (givenX - this.endA.x) + this.endA.y;
   }
   hasPoint(other) {
     if (!(other instanceof Point)) return false;

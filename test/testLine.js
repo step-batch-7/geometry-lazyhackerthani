@@ -66,15 +66,15 @@ describe('slope', function() {
   });
   it('should have slope as -infinity if line is parallel to x axis and difference of x co-ordinates is negative', function() {
     const line = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
-    assert.strictEqual(line.slope, -Infinity);
+    assert.strictEqual(line.slope, 0);
   });
   it('should have slope as infinity if line is parallel to x axis and difference of x co-ordinates is positive ', function() {
     const line = new Line({ x: 3, y: 2 }, { x: 1, y: 2 });
-    assert.strictEqual(line.slope, Infinity);
+    assert.strictEqual(line.slope, 0);
   });
   it('should have slope as 0 if line is parallel to y axis ', function() {
     const line = new Line({ x: 1, y: 2 }, { x: 1, y: 3 });
-    assert.strictEqual(line.slope, 0);
+    assert.strictEqual(line.slope, -Infinity);
   });
 });
 
@@ -112,6 +112,10 @@ describe('isParallelTo', function() {
     it('should one value when line is parallel to x axis', function() {
       const line = new Line({ x: 3, y: 1 }, { x: 4, y: 1 });
       assert.strictEqual(line.findX(1), 3);
+    });
+    it('should should give floating value of x for given y', function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 3, y: 4 });
+      assert.approximately(line.findX(1), 0.75, 0.1);
     });
   });
 
