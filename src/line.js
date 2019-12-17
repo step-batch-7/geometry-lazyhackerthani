@@ -5,10 +5,6 @@ const isBetween = function(range1, range2, no) {
   return min(range1, range2) <= no && no <= max(range1, range2);
 };
 
-const yIntercept = function() {
-  return this.endA.y - this.slope * this.endA.x;
-};
-
 const areCollinear = function(point1, point2, point3) {
   return (
     point1.x * (point2.y - point3.y) +
@@ -39,7 +35,7 @@ class Line {
   isParallelTo(other) {
     if (
       !(other instanceof Line) ||
-      yIntercept.call(other) === yIntercept.call(this)
+      areCollinear(this.endA, this.endB, other.endA)
     )
       return false;
     return this.slope === other.slope;
