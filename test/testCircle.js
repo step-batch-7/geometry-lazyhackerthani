@@ -47,6 +47,21 @@ describe('Circle', function() {
       const point = new Point(2, 0);
       assert.isTrue(circle.hasPoint(point));
     });
+    it('should say false if point is not on the circle', function() {
+      const circle = new Circle(new Point(0, 0), 2);
+      const point = new Point(1, 3);
+      assert.isFalse(circle.hasPoint(point));
+    });
+    it('should say true if point is inside the circle', function() {
+      const circle = new Circle(new Point(0, 0), 2);
+      const point = new Point(1, 1);
+      assert.isTrue(circle.hasPoint(point));
+    });
+    it('should say true if point is in the center of circle', function() {
+      const circle = new Circle(new Point(0, 0), 2);
+      const point = new Point(0, 0);
+      assert.isTrue(circle.hasPoint(point));
+    });
   });
   describe('moveTo', function() {
     it('should creates a new circle of same dimensions at 1,1', function() {
