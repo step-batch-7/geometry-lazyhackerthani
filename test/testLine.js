@@ -162,14 +162,29 @@ describe('isParallelTo', function() {
       const point = new Point(1, 2);
       assert.isTrue(line.hasPoint(point));
     });
-    it('should say true for (0,0)', function() {
+    it('should say true for (0,0) as point and starting end', function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 0, y: 3 });
+      const point = new Point(0, 0);
+      assert.isTrue(line.hasPoint(point));
+    });
+    it('should say true for (0,0) as end point', function() {
       const line = new Line({ x: 0, y: 0 }, { x: 0, y: 3 });
       const point = new Point(0, 2);
       assert.isTrue(line.hasPoint(point));
     });
-    it('should say true for end Point', function() {
-      const line = new Line({ x: 0, y: 0 }, { x: 0, y: 3 });
-      const point = new Point(0, 3);
+    it('should say true for end Point1', function() {
+      const line = new Line({ x: 2, y: 2 }, { x: 2, y: 5 });
+      const point = new Point(2, 2);
+      assert.isTrue(line.hasPoint(point));
+    });
+    it('should say true for end Point2', function() {
+      const line = new Line({ x: 2, y: 2 }, { x: 2, y: 5 });
+      const point = new Point(2, 5);
+      assert.isTrue(line.hasPoint(point));
+    });
+    it('should say true for negative point', function() {
+      const line = new Line({ x: 2, y: -2 }, { x: 2, y: 5 });
+      const point = new Point(2, -1);
       assert.isTrue(line.hasPoint(point));
     });
   });

@@ -52,7 +52,7 @@ class Line {
   hasPoint(other) {
     if (
       !(other instanceof Point) ||
-      this.slope !== (this.endA.x - other.x) / (this.endA.y - other.y)
+      this.slope * (this.endA.y - other.y) !== this.endA.x - other.x
     )
       return false;
     return (
