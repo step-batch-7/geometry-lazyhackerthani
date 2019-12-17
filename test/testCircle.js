@@ -41,4 +41,11 @@ describe('Circle', function() {
       assert.approximately(circle.area, 12.56, 0.01);
     });
   });
+  describe('hasPoint', function() {
+    it('should say true if point is on the circle', function() {
+      const circle = new Circle(new Point(0, 0), 2);
+      const point = new Point(2, 0);
+      assert.isTrue(circle.hasPoint(point));
+    });
+  });
 });
