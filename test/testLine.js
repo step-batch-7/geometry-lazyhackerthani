@@ -157,13 +157,18 @@ describe('isParallelTo', function() {
       const point = new Point(4, 4);
       assert.isFalse(line.hasPoint(point));
     });
-    it('should say true if point is not on the line and the line is parallel to y axis', function() {
+    it('should say true if point is on the line and the line is parallel to y axis', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 1, y: 3 });
       const point = new Point(1, 2);
       assert.isTrue(line.hasPoint(point));
     });
-    it('should say true for (0,0) as point and starting end', function() {
+    it('should say true for (0,0) as point and on y axis', function() {
       const line = new Line({ x: 0, y: 0 }, { x: 0, y: 3 });
+      const point = new Point(0, 0);
+      assert.isTrue(line.hasPoint(point));
+    });
+    it.skip('should say true for (0,0) as point and line on x axis', function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 3, y: 0 });
       const point = new Point(0, 0);
       assert.isTrue(line.hasPoint(point));
     });

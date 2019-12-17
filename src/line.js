@@ -8,6 +8,9 @@ const isBetween = function(range1, range2, no) {
 const yIntercept = function() {
   return this.endA.y - this.slope * this.endA.x;
 };
+const splitBy = function(point) {
+  return [new Line(this.endA, point), new Line(point, this.endB)];
+};
 
 class Line {
   constructor(endA, endB) {
@@ -41,13 +44,13 @@ class Line {
   }
   findX(givenY) {
     if (!isBetween(this.endA.y, this.endB.y, givenY)) return NaN;
-    if (this.endA.y == this.endB.y) return this.endA.x;
-    return (givenY - yIntercept.call(this)) / this.slope;
+    if (this.slope == undefined) return this.endA.x;
+    return (givenY - this.endA.y) / this.slope + this.endA.x;
   }
   findY(givenX) {
     if (!isBetween(this.endA.x, this.endB.x, givenX)) return NaN;
-    if (this.endA.x == this.endB.x) return this.endA.y;
-    return this.slope * givenX + yIntercept.call(this);
+    if (this.slope == 0) return this.endA.y;
+    return this.slope * (givenX - this.endA.x) + this.endA.x;
   }
   hasPoint(other) {
     if (
@@ -75,8 +78,8 @@ class Line {
   findPointFromStart(other) {
     let t = other / this.length;
     return new Point(
-      round((1 - t) * this.endA.x + t * this.endB.x),
-      round((1 - t) * this.endA.y + t * this.endB.y)
+      (1 - t) * this.endA.x + t * this.endB.x,
+      (1 - t) * this.endA.y + t * this.endB.y
     );
   }
   findPointFromEnd(other) {
