@@ -140,4 +140,11 @@ describe('Rectangle', function() {
       });
     });
   });
+  describe('hasPoint', function() {
+    it('should say true if point is on the rectangle', function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 2 });
+      const point = new Point(1, 1);
+      assert.isTrue(rectangle.hasPoint(point));
+    });
+  });
 });
