@@ -41,7 +41,6 @@ class Line {
     return this.slope === other.slope;
   }
   get slope() {
-    // if (this.endA.y === this.endB.y) return undefined;
     return (this.endA.x - this.endB.x) / (this.endA.y - this.endB.y);
   }
   findX(givenY) {
@@ -84,8 +83,8 @@ class Line {
   findPointFromEnd(other) {
     let t = other / this.length;
     return new Point(
-      round((1 - t) * this.endB.x + t * this.endA.x),
-      round((1 - t) * this.endB.y + t * this.endA.y)
+      (1 - t) * this.endB.x + t * this.endA.x,
+      (1 - t) * this.endB.y + t * this.endA.y
     );
   }
 }
