@@ -8,8 +8,14 @@ const isBetween = function(range1, range2, no) {
 const yIntercept = function() {
   return this.endA.y - this.slope * this.endA.x;
 };
-const splitBy = function(point) {
-  return [new Line(this.endA, point), new Line(point, this.endB)];
+
+const areCollinear = function(point1, point2, point3) {
+  return (
+    point1.x * (point2.y - point3.y) +
+      point2.x * (point3.y - point1.y) +
+      point3.x * (point1.y - point2.y) ===
+    0
+  );
 };
 
 class Line {
@@ -53,12 +59,9 @@ class Line {
     return this.slope * (givenX - this.endA.x) + this.endA.x;
   }
   hasPoint(other) {
-    if (
-      !(other instanceof Point) ||
-      this.slope * (this.endA.y - other.y) !== this.endA.x - other.x
-    )
-      return false;
+    if (!(other instanceof Point)) return false;
     return (
+      areCollinear(this.endA, this.endB, other) &&
       isBetween(this.endA.x, this.endB.x, other.x) &&
       isBetween(this.endA.y, this.endB.y, other.y)
     );

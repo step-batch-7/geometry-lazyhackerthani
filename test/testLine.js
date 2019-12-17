@@ -167,8 +167,8 @@ describe('isParallelTo', function() {
       const point = new Point(0, 0);
       assert.isTrue(line.hasPoint(point));
     });
-    it.skip('should say true for (0,0) as point and line on x axis', function() {
-      const line = new Line({ x: 0, y: 0 }, { x: 3, y: 0 });
+    it('should say true for (0,0) as point and line on x axis', function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 4, y: 0 });
       const point = new Point(0, 0);
       assert.isTrue(line.hasPoint(point));
     });
