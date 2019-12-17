@@ -5,6 +5,10 @@ const isBetween = function(range1, range2, no) {
   return min(range1, range2) <= no && no <= max(range1, range2);
 };
 
+const yIntercept = function() {
+  return this.endA.y - this.slope * this.endA.x;
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = new Point(endA.x, endA.y);
@@ -24,7 +28,10 @@ class Line {
     return this.endA.findDistanceTo(this.endB);
   }
   isParallelTo(other) {
-    if (!(other instanceof Line) || other.yIntercept === this.yIntercept)
+    if (
+      !(other instanceof Line) ||
+      yIntercept.call(other) === yIntercept.call(this)
+    )
       return false;
     return this.slope === other.slope;
   }
@@ -32,18 +39,15 @@ class Line {
     if (this.endA.y === this.endB.y) return undefined;
     return (this.endA.x - this.endB.x) / (this.endA.y - this.endB.y);
   }
-  get yIntercept() {
-    return this.endA.y - this.slope * this.endA.x;
-  }
   findX(givenY) {
     if (!isBetween(this.endA.y, this.endB.y, givenY)) return NaN;
     if (this.endA.y == this.endB.y) return this.endA.x;
-    return (givenY - this.yIntercept) / this.slope;
+    return (givenY - yIntercept.call(this)) / this.slope;
   }
   findY(givenX) {
     if (!isBetween(this.endA.x, this.endB.x, givenX)) return NaN;
     if (this.endA.x == this.endB.x) return this.endA.y;
-    return this.slope * givenX + this.yIntercept;
+    return this.slope * givenX + yIntercept.call(this);
   }
   hasPoint(other) {
     if (

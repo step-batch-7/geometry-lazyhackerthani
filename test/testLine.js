@@ -167,6 +167,11 @@ describe('isParallelTo', function() {
       const point = new Point(0, 2);
       assert.isTrue(line.hasPoint(point));
     });
+    it('should say true for end Point', function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 0, y: 3 });
+      const point = new Point(0, 3);
+      assert.isTrue(line.hasPoint(point));
+    });
   });
 
   describe('midPoint', function() {
