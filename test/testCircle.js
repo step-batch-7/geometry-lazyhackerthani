@@ -28,6 +28,10 @@ describe('Circle', function() {
       const circle = new Circle(new Point(1, 2), 5);
       assert.isFalse(circle.isEqualTo({ x: 1, y: 2 }, 5));
     });
+    it('should say false if given is not a instance of circle but has point', function() {
+      const circle = new Circle(new Point(1, 2), 5);
+      assert.isFalse(circle.isEqualTo(new Point(1, 2), 5));
+    });
   });
   describe('area', function() {
     it('should give area of circle', function() {
@@ -52,15 +56,15 @@ describe('Circle', function() {
       const point = new Point(1, 3);
       assert.isFalse(circle.hasPoint(point));
     });
-    it('should say true if point is inside the circle', function() {
+    it('should say False if point is inside the circle', function() {
       const circle = new Circle(new Point(0, 0), 2);
       const point = new Point(1, 1);
-      assert.isTrue(circle.hasPoint(point));
+      assert.isFalse(circle.hasPoint(point));
     });
-    it('should say true if point is in the center of circle', function() {
+    it('should say False if point is in the center of circle', function() {
       const circle = new Circle(new Point(0, 0), 2);
       const point = new Point(0, 0);
-      assert.isTrue(circle.hasPoint(point));
+      assert.isFalse(circle.hasPoint(point));
     });
   });
   describe('moveTo', function() {

@@ -20,7 +20,7 @@ class Circle {
   }
   hasPoint(other) {
     return (
-      pow(other.x - this.center.x, 2) + pow(other.y - this.center.y, 2) <=
+      pow(other.x - this.center.x, 2) + pow(other.y - this.center.y, 2) ==
       pow(this.radius, 2)
     );
   }
