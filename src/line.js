@@ -1,4 +1,4 @@
-const { pow, sqrt, min, max, round } = Math;
+const { min, max, round } = Math;
 const Point = require('../src/point');
 
 const isBetween = function(range1, range2, no) {

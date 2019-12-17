@@ -1,7 +1,5 @@
 const { hypot, min, max } = Math;
-const isBetween = function(range1, range2, no) {
-  return min(range1, range2) <= no && no <= max(range1, range2);
-};
+
 class Point {
   constructor(x, y) {
     [this.x, this.y] = [x, y];

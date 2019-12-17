@@ -35,4 +35,10 @@ describe('Circle', function() {
       assert.approximately(circle.area, 12.56, 0.01);
     });
   });
+  describe('perimeter', function() {
+    it('should give perimeter of a circle', function() {
+      const circle = new Circle(new Point(0, 0), 2);
+      assert.approximately(circle.area, 12.56, 0.01);
+    });
+  });
 });

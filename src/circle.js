@@ -15,6 +15,9 @@ class Circle {
   get area() {
     return PI * pow(this.radius, 2);
   }
+  get perimeter() {
+    return 2 * PI * this.radius;
+  }
 }
 
 module.exports = Circle;
