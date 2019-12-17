@@ -59,5 +59,16 @@ describe('Rectangle', function() {
       const rectangle2 = new Rectangle({ x: 1, y: 2 }, { x: 1, y: 4 });
       assert.isTrue(rectangle1.isEqualTo(rectangle2));
     });
+    it('should say false rectangle are not equal', function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 2 }, { x: 1, y: 4 });
+      const rectangle2 = new Rectangle({ x: 1, y: 2 }, { x: 2, y: 4 });
+      assert.isFalse(rectangle1.isEqualTo(rectangle2));
+    });
+    it('should say false given is not a rectangle instance', function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 2 }, { x: 1, y: 4 });
+      assert.isFalse(
+        rectangle1.isEqualTo({ d1: { x: 1, y: 2 }, d2: { x: 2, y: 4 } })
+      );
+    });
   });
 });

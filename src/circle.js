@@ -27,6 +27,12 @@ class Circle {
   moveTo(other) {
     return new Circle(other, this.radius);
   }
+  covers(other) {
+    return (
+      pow(other.x - this.center.x, 2) + pow(other.y - this.center.y, 2) <=
+      pow(this.radius, 2)
+    );
+  }
 }
 
 module.exports = Circle;

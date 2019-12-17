@@ -75,4 +75,25 @@ describe('Circle', function() {
       assert.isTrue(circle2.isEqualTo(circle1));
     });
   });
+  describe('covers', function() {
+    it('should say true for point inside the circle', function() {
+      const circle = new Circle(new Point(0, 0), 2);
+      assert.isTrue(circle.covers(new Point(0, 1)));
+    });
+    it('should say false if point is not inside the circle', function() {
+      const circle = new Circle(new Point(0, 0), 2);
+      const point = new Point(1, 3);
+      assert.isFalse(circle.covers(point));
+    });
+    it('should say true if point is on the circle', function() {
+      const circle = new Circle(new Point(0, 0), 2);
+      const point = new Point(0, 2);
+      assert.isTrue(circle.covers(point));
+    });
+    it('should say True if point is in the center of circle', function() {
+      const circle = new Circle(new Point(0, 0), 2);
+      const point = new Point(0, 0);
+      assert.isTrue(circle.covers(point));
+    });
+  });
 });
