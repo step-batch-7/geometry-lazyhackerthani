@@ -48,12 +48,14 @@ class Rectangle {
     );
   }
   covers(other) {
+    if (!(other instanceof Point)) return false;
     return (
       isBetween(this.d1.x, this.d2.y, other.x) &&
       isBetween(this.d1.y, this.d2.y, other.y)
     );
   }
   hasPoint(other) {
+    if (!(other instanceof Point)) return false;
     const sides = getSides(getVertices(this.d1, this.d2));
     return sides.some(side => side.hasPoint(other));
   }

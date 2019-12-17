@@ -82,68 +82,97 @@ describe('Rectangle', function() {
       const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 2 });
       const point = new Point(1, 3);
       assert.isFalse(rectangle.covers(point));
-
-      it('should say true if point is on the rectangle', function() {
-        const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 3, y: 3 });
-        const point = new Point(3, 3);
-        assert.isTrue(rectangle.hasPoint(point));
-      });
-      it('should say true if point is on the rectangle and second point has smaller x and y', function() {
-        const rectangle = new Rectangle({ x: 1, y: 3 }, { x: 3, y: 1 });
-        const point = new Point(2, 2);
-        assert.isTrue(rectangle.hasPoint(point));
-      });
-      it('should say false if point is not on the rectangle', function() {
-        const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 3, y: 3 });
-        const point = new Point(4, 1);
-        assert.isFalse(rectangle.hasPoint(point));
-      });
-      it('should say True if point is not on the rectangle but in the rectangle', function() {
-        const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 4 });
-        const point = new Point(2, 1);
-        assert.isTrue(rectangle.hasPoint(point));
-      });
-      it('should say false if given is not a Point', function() {
-        const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 3, y: 3 });
-        const point = { x: 1, y: 1 };
-        assert.isFalse(rectangle.hasPoint(point));
-      });
-      it('should say true for (0,0) as point and on y axis', function() {
-        const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 0, y: 3 });
-        const point = new Point(0, 0);
-        assert.isTrue(rectangle.hasPoint(point));
-      });
-      it.skip('should say true for (0,0) as point and rectangle on x axis', function() {
-        const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 0 });
-        const point = new Point(0, 0);
-        assert.isTrue(rectangle.hasPoint(point));
-      });
-      it('should say true for point is not on the rectangle and (0,0) as end point', function() {
-        const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 0, y: 3 });
-        const point = new Point(0, 2);
-        assert.isTrue(rectangle.hasPoint(point));
-      });
-      it('should say true for point is not on the rectangle and point is end Point1', function() {
-        const rectangle = new Rectangle({ x: 2, y: 2 }, { x: 2, y: 5 });
-        const point = new Point(2, 2);
-        assert.isTrue(rectangle.hasPoint(point));
-      });
-      it('should say true for point is not on the rectangle and point is end Point2', function() {
-        const rectangle = new Rectangle({ x: 2, y: 2 }, { x: 2, y: 5 });
-        const point = new Point(2, 5);
-        assert.isTrue(rectangle.hasPoint(point));
-      });
-      it('should say true for point is not on the rectangle and has negative point', function() {
-        const rectangle = new Rectangle({ x: 2, y: -2 }, { x: 2, y: 5 });
-        const point = new Point(2, -1);
-        assert.isTrue(rectangle.hasPoint(point));
-      });
+    });
+    it('should say true if point is on the rectangle', function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = new Point(3, 3);
+      assert.isTrue(rectangle.covers(point));
+    });
+    it('should say true if point is on the rectangle and second point has smaller x and y', function() {
+      const rectangle = new Rectangle({ x: 1, y: 3 }, { x: 3, y: 1 });
+      const point = new Point(1, 2);
+      assert.isTrue(rectangle.covers(point));
+    });
+    it('should say false if point is not on the rectangle', function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = new Point(4, 1);
+      assert.isFalse(rectangle.covers(point));
+    });
+    it('should say True if point is not on the rectangle but inside the rectangle', function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 4 });
+      const point = new Point(2, 1);
+      assert.isTrue(rectangle.covers(point));
+    });
+    it('should say false if given is not a Point', function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 3, y: 3 });
+      assert.isFalse(rectangle.covers({ x: 1, y: 1 }));
+    });
+    it('should say true for even (0,0) as point and rectangle on y axis', function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 0, y: 3 });
+      const point = new Point(0, 0);
+      assert.isTrue(rectangle.covers(point));
+    });
+    it('should say true for (0,0) as point and rectangle on x axis', function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 0 });
+      const point = new Point(0, 0);
+      assert.isTrue(rectangle.covers(point));
+    });
+    it('should say true for point is inside the rectangle and (0,0) as end point', function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 0, y: 3 });
+      const point = new Point(0, 2);
+      assert.isTrue(rectangle.covers(point));
+    });
+    it('should say true for point is not on the rectangle but inside and has negative point', function() {
+      const rectangle = new Rectangle({ x: 2, y: -2 }, { x: 2, y: 5 });
+      const point = new Point(2, -1);
+      assert.isTrue(rectangle.covers(point));
     });
   });
   describe('hasPoint', function() {
     it('should say true if point is on the rectangle', function() {
       const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 2 });
       const point = new Point(1, 1);
+      assert.isTrue(rectangle.hasPoint(point));
+    });
+    it('should say false if point is not on the rectangle', function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 2 });
+      const point = new Point(1, 3);
+      assert.isFalse(rectangle.hasPoint(point));
+    });
+
+    it('should say true if point is on the rectangle and second point has smaller x and y', function() {
+      const rectangle = new Rectangle({ x: 1, y: 3 }, { x: 3, y: 1 });
+      const point = new Point(2, 1);
+      assert.isTrue(rectangle.hasPoint(point));
+    });
+    it('should say false if point is not on the rectangle', function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = new Point(4, 1);
+      assert.isFalse(rectangle.hasPoint(point));
+    });
+    it('should say false if given is not a Point', function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = { x: 1, y: 1 };
+      assert.isFalse(rectangle.hasPoint(point));
+    });
+    it('should say true for (0,0) as point on rectangle and on y axis', function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 0, y: 3 });
+      const point = new Point(0, 0);
+      assert.isTrue(rectangle.hasPoint(point));
+    });
+    it('should say true for (0,0) as point on rectangle and on x axis', function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 0 });
+      const point = new Point(0, 0);
+      assert.isTrue(rectangle.hasPoint(point));
+    });
+    it('should say false for point is not on the rectangle and has negative point', function() {
+      const rectangle = new Rectangle({ x: 2, y: -2 }, { x: 4, y: 5 });
+      const point = new Point(3, -1);
+      assert.isFalse(rectangle.hasPoint(point));
+    });
+    it('should say true for point is on the rectangle and has negative point', function() {
+      const rectangle = new Rectangle({ x: 2, y: -2 }, { x: 4, y: 5 });
+      const point = new Point(2, -1);
       assert.isTrue(rectangle.hasPoint(point));
     });
   });
