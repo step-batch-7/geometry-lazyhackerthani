@@ -223,13 +223,6 @@ describe('Line', function() {
     });
   });
 
-  describe('midPoint', function() {
-    it('should give midPoint of the', function() {
-      const line = new Line({ x: 2, y: 4 }, { x: 6, y: 12 });
-      assert.deepStrictEqual(line.midPoint, { x: 4, y: 8 });
-    });
-  });
-
   describe('split', function() {
     it('should give two lines split on middle point', function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });

@@ -14,6 +14,13 @@ const areCollinear = function(point1, point2, point3) {
   );
 };
 
+const midPoint = function() {
+  return {
+    x: (this.endA.x + this.endB.x) / 2,
+    y: (this.endA.y + this.endB.y) / 2
+  };
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = new Point(endA.x, endA.y);
@@ -64,16 +71,10 @@ class Line {
       isBetween(this.endA.y, this.endB.y, other.y)
     );
   }
-  get midPoint() {
-    return {
-      x: (this.endA.x + this.endB.x) / 2,
-      y: (this.endA.y + this.endB.y) / 2
-    };
-  }
   split() {
     return [
-      new Line(this.endA, this.midPoint),
-      new Line(this.midPoint, this.endB)
+      new Line(this.endA, midPoint.call(this)),
+      new Line(midPoint.call(this), this.endB)
     ];
   }
   findPointFromStart(other) {
