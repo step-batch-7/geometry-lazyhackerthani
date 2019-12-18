@@ -78,8 +78,14 @@ describe('Line', function() {
     it('should give Infinity as slope when line is parallel to y-axis and direction is upwards', function() {
       const line = new Line({ x: 1, y: 2 }, { x: 1, y: 1 });
       const actualValue = line.slope;
-      const expectedValue = -Infinity;
+      const expectedValue = Infinity;
       assert.strictEqual(actualValue, expectedValue);
+    });
+    it('should give zero for x-axis', () => {
+      const line = new Line({ x: 2, y: 0 }, { x: 1, y: 0 });
+      const actual = line.slope;
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
     });
   });
 

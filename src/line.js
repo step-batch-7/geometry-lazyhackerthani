@@ -51,7 +51,11 @@ class Line {
     );
   }
   get slope() {
-    return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
+    const deltaY = this.endB.y - this.endA.y;
+    const deltaX = this.endB.x - this.endA.x;
+    const slopOfLine = deltaY / deltaX;
+    if (deltaX === 0 || deltaY === 0) return abs(slopOfLine);
+    return slopOfLine;
   }
   findX(givenY) {
     if (!isBetween(this.endA.y, this.endB.y, givenY)) return NaN;
