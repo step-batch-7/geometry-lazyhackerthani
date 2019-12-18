@@ -3,6 +3,10 @@ const { hypot, min, max } = Math;
 class Point {
   constructor(x, y) {
     [this.x, this.y] = [x, y];
+    Object.defineProperties(this, {
+      x: { writable: false },
+      y: { writable: false }
+    });
   }
   toString() {
     return `[Point @(${this.x},${this.y})]`;

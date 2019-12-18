@@ -9,6 +9,15 @@ describe('Circle', function() {
       const circle = new Circle(new Point(1, 2), 5);
       assert.strictEqual(circle.toString(), `[Circle @(1,2) radius 5]`);
     });
+    it('should remain unchanged of the properties of the circle', () => {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      circle.center.x = undefined;
+      circle.center.y = undefined;
+      circle.radius = undefined;
+      const actual = circle.toString();
+      const expected = '[Circle @(1,2) radius 5]';
+      assert.deepStrictEqual(actual, expected);
+    });
   });
   describe('isEqualTo', function() {
     it('should say true for circle with same center and radius', function() {

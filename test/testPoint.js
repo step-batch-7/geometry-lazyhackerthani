@@ -79,5 +79,16 @@ describe('Point', function() {
       const point = new Point(2, 1);
       assert.isFalse(point.isOn(line));
     });
+    const Circle = require('../src/circle.js');
+    it('should say true if the point is on the given circle', function() {
+      const circle = new Circle({ x: 1, y: 1 }, 2);
+      const point = new Point(3, 1);
+      assert.isTrue(point.isOn(circle));
+    });
+    it('should say false if the point is not on the given circle', function() {
+      const circle = new Circle({ x: 1, y: 1 }, 2);
+      const point = new Point(3, 2);
+      assert.isFalse(point.isOn(circle));
+    });
   });
 });
