@@ -60,7 +60,7 @@ class Rectangle {
   covers(other) {
     if (!(other instanceof Point)) return false;
     return (
-      isBetween(this.d1.x, this.d2.y, other.x) &&
+      isBetween(this.d1.x, this.d2.x, other.x) &&
       isBetween(this.d1.y, this.d2.y, other.y)
     );
   }
