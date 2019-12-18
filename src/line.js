@@ -1,4 +1,4 @@
-const { min, max, round } = Math;
+const { min, max, abs } = Math;
 const Point = require('../src/point');
 
 const isBetween = function(range1, range2, no) {
@@ -38,10 +38,13 @@ class Line {
       areCollinear(this.endA, this.endB, other.endA)
     )
       return false;
-    return this.slope === other.slope;
+    return (
+      this.slope === other.slope ||
+      (abs(this.slope) === Infinity && abs(other.slope) === Infinity)
+    );
   }
   get slope() {
-    return (this.endA.y - this.endB.y) / (this.endA.x - this.endB.x);
+    return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
   }
   findX(givenY) {
     if (!isBetween(this.endA.y, this.endB.y, givenY)) return NaN;
@@ -74,6 +77,7 @@ class Line {
     ];
   }
   findPointFromStart(other) {
+    if (!(other >= 0 && other <= this.length)) return null;
     let t = other / this.length;
     return new Point(
       (1 - t) * this.endA.x + t * this.endB.x,
@@ -81,6 +85,7 @@ class Line {
     );
   }
   findPointFromEnd(other) {
+    if (!(other >= 0 && other <= this.length)) return null;
     let t = other / this.length;
     return new Point(
       (1 - t) * this.endB.x + t * this.endA.x,

@@ -49,55 +49,71 @@ describe('Line', function() {
       const line = new Line({ x: 3, y: 3 }, { x: 3, y: 3 });
       assert.strictEqual(line.length, 0);
     });
-  });
-  it('should give length of the line when both the points are not same and have floating value', function() {
-    let line = new Line({ x: 2, y: 3 }, { x: 3.5, y: 3 });
-    assert.strictEqual(line.length, 1.5);
+    it('should give length of the line when both the points are not same and have floating value', function() {
+      let line = new Line({ x: 2, y: 3 }, { x: 3.5, y: 3 });
+      assert.strictEqual(line.length, 1.5);
 
-    line = new Line({ x: 2, y: 3 }, { x: 3.5, y: 4.5 });
-    assert.approximately(line.length, 2.1213, 0.0001);
+      line = new Line({ x: 2, y: 3 }, { x: 3.5, y: 4.5 });
+      assert.approximately(line.length, 2.1213, 0.0001);
+    });
   });
-});
 
-describe('slope', function() {
-  it('should have slope for a line neither parallel to x nor to y axis', function() {
-    const line = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
-    assert.strictEqual(line.slope, 1);
+  describe('slope', function() {
+    it('should have slope for a line neither parallel to x nor to y axis', function() {
+      const line = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
+      assert.strictEqual(line.slope, 1);
+    });
+    it('should have slope as -infinity if line is parallel to x axis and difference of x co-ordinates is negative', function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
+      assert.strictEqual(line.slope, 0);
+    });
+    it('should have slope as infinity if line is parallel to x axis and difference of x co-ordinates is positive ', function() {
+      const line = new Line({ x: 3, y: 2 }, { x: 1, y: 2 });
+      assert.strictEqual(line.slope, 0);
+    });
+    it('should have slope as 0 if line is parallel to y axis ', function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 1, y: 3 });
+      assert.strictEqual(line.slope, Infinity);
+    });
+    it('should give Infinity as slope when line is parallel to y-axis and direction is upwards', function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 1, y: 1 });
+      const actualValue = line.slope;
+      const expectedValue = -Infinity;
+      assert.strictEqual(actualValue, expectedValue);
+    });
   });
-  it('should have slope as -infinity if line is parallel to x axis and difference of x co-ordinates is negative', function() {
-    const line = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
-    assert.strictEqual(line.slope, 0);
-  });
-  it('should have slope as infinity if line is parallel to x axis and difference of x co-ordinates is positive ', function() {
-    const line = new Line({ x: 3, y: 2 }, { x: 1, y: 2 });
-    assert.strictEqual(line.slope, 0);
-  });
-  it('should have slope as 0 if line is parallel to y axis ', function() {
-    const line = new Line({ x: 1, y: 2 }, { x: 1, y: 3 });
-    assert.strictEqual(line.slope, -Infinity);
-  });
-});
 
-describe('isParallelTo', function() {
-  it('should say true if given line are parallel', function() {
-    const line1 = new Line({ x: 3, y: 3 }, { x: 6, y: 6 });
-    const line2 = new Line({ x: 4, y: 3 }, { x: 6, y: 5 });
-    assert.isTrue(line1.isParallelTo(line2));
-  });
-  it('should say false if given line are overlapping', function() {
-    const line1 = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
-    const line2 = new Line({ x: 4, y: 6 }, { x: 6, y: 8 });
-    assert.isFalse(line1.isParallelTo(line2));
-  });
-  it('should say false if given line are not parallel', function() {
-    const line1 = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
-    const line2 = new Line({ x: 4, y: 6 }, { x: 6, y: 5 });
-    assert.isFalse(line1.isParallelTo(line2));
-  });
-  it('should say false if given object is not a line', function() {
-    const line1 = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
-    const line2 = { endA: { x: 4, y: 6 }, endB: { x: 6, y: 5 }, slope: 1 };
-    assert.isFalse(line1.isParallelTo(line2));
+  describe('isParallelTo', function() {
+    it('should say true if given line are parallel', function() {
+      const line1 = new Line({ x: 3, y: 3 }, { x: 6, y: 6 });
+      const line2 = new Line({ x: 4, y: 3 }, { x: 6, y: 5 });
+      assert.isTrue(line1.isParallelTo(line2));
+    });
+    it('should say false if given line are overlapping', function() {
+      const line1 = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
+      const line2 = new Line({ x: 4, y: 6 }, { x: 6, y: 8 });
+      assert.isFalse(line1.isParallelTo(line2));
+    });
+    it('should say false if given line are not parallel', function() {
+      const line1 = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
+      const line2 = new Line({ x: 4, y: 6 }, { x: 6, y: 5 });
+      assert.isFalse(line1.isParallelTo(line2));
+    });
+    it('should say false if given object is not a line', function() {
+      const line1 = new Line({ x: 3, y: 5 }, { x: 4, y: 6 });
+      const line2 = { endA: { x: 4, y: 6 }, endB: { x: 6, y: 5 }, slope: 1 };
+      assert.isFalse(line1.isParallelTo(line2));
+    });
+    it('should give true if both lines are parallel to Y-axis and slope is in negative', function() {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 0, y: 4 });
+      const line2 = new Line({ x: 1, y: 1 }, { x: 1, y: -3 });
+      assert.isTrue(line1.isParallelTo(line2));
+    });
+    it('should give true if both lines are parallel to Y-axis and second point has goes down', function() {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 0, y: 4 });
+      const line2 = new Line({ x: 1, y: 4 }, { x: 1, y: 0 });
+      assert.isTrue(line1.isParallelTo(line2));
+    });
   });
 
   describe('findX', function() {

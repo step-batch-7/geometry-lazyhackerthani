@@ -21,6 +21,7 @@ class Point {
     return new Point(this.x, this.y);
   }
   findDistanceTo(other) {
+    if (!(other instanceof Point)) return NaN;
     return hypot(this.x - other.x, this.y - other.y);
   }
   isOn(other) {

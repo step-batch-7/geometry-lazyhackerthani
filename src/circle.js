@@ -10,6 +10,7 @@ class Circle {
     return `[Circle @(${this.center.x},${this.center.y}) radius ${this.radius}]`;
   }
   isEqualTo(other) {
+    if (!(other instanceof Circle)) return false;
     return this.center.isEqualTo(other.center) && this.radius == other.radius;
   }
   get area() {
@@ -19,6 +20,7 @@ class Circle {
     return 2 * PI * this.radius;
   }
   hasPoint(other) {
+    if (!(other instanceof Point)) return false;
     return (
       pow(other.x - this.center.x, 2) + pow(other.y - this.center.y, 2) ==
       pow(this.radius, 2)
@@ -28,8 +30,9 @@ class Circle {
     return new Circle(other, this.radius);
   }
   covers(other) {
+    if (!(other instanceof Point)) return false;
     return (
-      pow(other.x - this.center.x, 2) + pow(other.y - this.center.y, 2) <=
+      pow(other.x - this.center.x, 2) + pow(other.y - this.center.y, 2) <
       pow(this.radius, 2)
     );
   }

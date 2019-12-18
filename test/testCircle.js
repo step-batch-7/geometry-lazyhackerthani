@@ -85,10 +85,10 @@ describe('Circle', function() {
       const point = new Point(1, 3);
       assert.isFalse(circle.covers(point));
     });
-    it('should say true if point is on the circle', function() {
+    it('should say false if point is on the circle', function() {
       const circle = new Circle(new Point(0, 0), 2);
       const point = new Point(0, 2);
-      assert.isTrue(circle.covers(point));
+      assert.isFalse(circle.covers(point));
     });
     it('should say True if point is in the center of circle', function() {
       const circle = new Circle(new Point(0, 0), 2);

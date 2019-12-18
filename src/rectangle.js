@@ -3,7 +3,7 @@ const Point = require('../src/point');
 const Line = require('../src/line.js');
 
 const isBetween = function(range1, range2, no) {
-  return min(range1, range2) <= no && no <= max(range1, range2);
+  return min(range1, range2) < no && no < max(range1, range2);
 };
 
 const getWidth = function(point1, point2) {
@@ -26,6 +26,19 @@ const getSides = function(vertices) {
   });
 };
 
+const areDiagonalsEqual = function(thisD1, thisD2, otherD1, otherD2) {
+  const rect1Diagonal1 = new Line(thisD1, thisD2);
+  const rect1Diagonal2 = new Line(
+    new Point(thisD2.x, thisD1.y),
+    new Point(thisD1.x, thisD2.y)
+  );
+  const otherDiagonal = new Line(otherD1, otherD2);
+  return (
+    rect1Diagonal1.isEqualTo(otherDiagonal) ||
+    rect1Diagonal2.isEqualTo(otherDiagonal)
+  );
+};
+
 class Rectangle {
   constructor(d1, d2) {
     this.d1 = new Point(d1.x, d1.y);
@@ -42,10 +55,7 @@ class Rectangle {
   }
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
-    return (
-      (this.d1.isEqualTo(other.d1) && this.d2.isEqualTo(other.d2)) ||
-      (this.d1.isEqualTo(other.d2) && this.d2.isEqualTo(other.d1))
-    );
+    return areDiagonalsEqual(this.d1, this.d2, other.d1, other.d2);
   }
   covers(other) {
     if (!(other instanceof Point)) return false;
